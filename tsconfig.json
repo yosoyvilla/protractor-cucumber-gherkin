@@ -16,6 +16,9 @@
             "cucumber"
         ]
     },
+    "presets": [
+        "es2017"
+    ],
     "filesGlob": [
         "./**/*.ts",
         "!./browser.d.ts",

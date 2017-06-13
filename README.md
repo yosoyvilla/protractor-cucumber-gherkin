@@ -11,12 +11,19 @@ https://nodejs.org/en/download/
 
 3.Text Editor(Optional) installed-->Sublime/Visual Studio Code/Brackets/Atom.
 
+4.Follow this tutorial to use babel server https://github.com/babel/example-node-server
+
 #### Setup Scripts
 * Clone the repository into a folder
 * Go inside the folder and run following command from terminal/command prompt
 ```
    npm install 
 ```
+
+```
+   typings install --global dt~es6-shim 
+```
+
 * All the dependencies from package.json and ambient typings would be installed in node_modules folder.
 
 #### Run Scripts
