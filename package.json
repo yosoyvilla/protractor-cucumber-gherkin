@@ -1,73 +1,180 @@
 {
   "name": "protractor-cucumber-gherkin",
   "version": "1.0.0",
-  "license": "MIT",
-  "description": "Protractor whit cucumber using gherkin how bussines language",
-  "homepage": "https://github.com/yosoyvilla/protractor-cucumber-gherkin",
-  "keywords": [
-    "protractor",
-    "cucumber",
-    "typescript",
-    "angular",
-    "angularjs",
-    "testing",
-    "behaviour driven development",
-    "bdd",
-    "selenium",
-    "webdriverJS",
-    "gherkin",
-    "automation testing"
-  ],
-  "main": "index.js",
-  "scripts": {
-    "tsc": "tsc",
-    "test": "protractor config/config.ts",
-    "webdriver-update": "webdriver-manager update",
-    "webdriver-start": "webdriver-manager start",
-    "start": "nodemon index.js --exec babel-node --presets es2015,stage-2",
-    "build": "babel lib -d dist --presets es2015,stage-2"
-  },
+  "description": "",
   "author": "David Villa <yosoyvilla@gmail.com>",
-  "devDependencies": {
-    "@types/cucumber": "0.0.38",
-    "@types/node": "^7.0.8",
-    "@types/selenium-webdriver": "^3.0.0",
-    "babel-cli": "^6.24.1",
-    "babel-preset-env": "^1.5.2",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-es2016": "^6.24.1",
-    "babel-preset-es2017": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
-    "babel-register": "^6.24.1",
-    "chai": "^3.5.0",
-    "chai-as-promised": "^5.3.0",
-    "cucumber": "^2.3.0",
-    "cucumber-html-reporter": "^0.3.7",
-    "es6-shim": "^0.35.3",
-    "express": "^3.21.2",
-    "mkdirp": "^0.5.1",
-    "mocha": "^3.4.2",
-    "nodemon": "^1.11.0",
-    "protractor-cucumber-framework": "^3.1.2",
-    "typescript": "^2.3.4",
-    "babel-core": "^6.1.21",
-    "babel-loader": "^6.2.0",
-    "chromedriver": "^2.20.0",
-    "protractor": "^3.0.0",
-    "should": "^7.1.1",
-    "webpack": "^1.12.6"
+  "main": "main.js",
+  "homepage": "https://github.com/yosoyvilla/protractor-cucumber-gherkin",
+  "license": "MIT",
+  "scripts": {
+    "rimraf": "rimraf",
+    "tslint": "tslint",
+    "typedoc": "typedoc",
+    "clean": "npm cache clean && npm run rimraf -- node_modules doc coverage dist",
+    "lint": "npm run tslint 'src/**/*.ts'",
+    "test": "node --max-old-space-size=4096 node_modules/karma/bin/karma start",
+    "ci": "npm run e2e && npm run test",
+    "webdriver-manager": "webdriver-manager",
+    "webdriver:update": "npm run webdriver-manager update",
+    "webdriver:start": "npm run webdriver-manager start",
+    "protractor": "npm run e2e",
+    "pree2e": "npm run webdriver:update -- --standalone",
+    "e2e": "better-npm-run e2e:basic:local",
+    "e2e:basic": "better-npm-run e2e:basic:local",
+    "e2e:basic:local": "better-npm-run e2e:basic:local",
+    "e2e:basic:electron": "better-npm-run e2e:basic:electron",
+    "e2e:basic:saucelabs": "better-npm-run e2e:basic:saucelabs",
+    "e2e:basic:todoapp": "better-npm-run e2e:basic:todoappexternal",
+    "e2e:cucumber": "better-npm-run e2e:cucumber:local",
+    "e2e:cucumber:local": "better-npm-run e2e:cucumber:local",
+    "e2e:cucumber:electron": "better-npm-run e2e:cucumber:electron",
+    "e2e:cucumber:saucelabs": "better-npm-run e2e:cucumber:saucelabs"
   },
-  "babel": {
-    "presets": [
-      "es2017"
-    ]
+  "betterScripts": {
+    "e2e:basic:local": {
+      "command": "protractor",
+      "env": {
+        "TEST_METHOD": "basic",
+        "TEST_ENV": "local"
+      }
+    },
+    "e2e:basic:electron": {
+      "command": "protractor",
+      "env": {
+        "TEST_METHOD": "basic",
+        "TEST_ENV": "electron"
+      }
+    },
+    "e2e:basic:saucelabs": {
+      "command": "protractor",
+      "env": {
+        "TEST_METHOD": "basic",
+        "TEST_ENV": "saucelabs"
+      }
+    },
+    "e2e:basic:todoappexternal": {
+      "command": "protractor",
+      "env": {
+        "TEST_METHOD": "basic",
+        "TEST_ENV": "todoappexternal"
+      }
+    },
+    "e2e:cucumber:local": {
+      "command": "protractor",
+      "env": {
+        "TEST_METHOD": "cucumber",
+        "TEST_ENV": "local"
+      }
+    },
+    "e2e:cucumber:electron": {
+      "command": "protractor",
+      "env": {
+        "TEST_METHOD": "cucumber",
+        "TEST_ENV": "electron"
+      }
+    },
+    "e2e:cucumber:saucelabs": {
+      "command": "protractor",
+      "env": {
+        "TEST_METHOD": "cucumber",
+        "TEST_ENV": "saucelabs"
+      }
+    }
   },
   "dependencies": {
-    "babel-preset-es2017": "^6.24.1",
-    "es6-shim": "^0.35.3",
-    "protractor": "^5.1.1",
-    "ts-node": "^2.0.0",
-    "typescript": "^2.2.1"
+    "@angular/common": "2.4.7",
+    "@angular/compiler": "2.4.7",
+    "@angular/core": "2.4.7",
+    "@angular/forms": "2.4.7",
+    "@angular/http": "2.4.7",
+    "@angular/platform-browser": "2.4.7",
+    "@angular/platform-browser-dynamic": "2.4.7",
+    "@angular/router": "3.1.0",
+    "core-js": "2.4.1",
+    "jquery": "2.2.2",
+    "lodash": "4.7.0",
+    "node-pre-gyp": "0.6.36",
+    "rxjs": "5.0.0-beta.12",
+    "zone.js": "0.6.23"
   },
-  "repository": "https://github.com/yosoyvilla/protractor-cucumber-gherkin"
+  "devDependencies": {
+    "@types/cucumber": "0.0.31",
+    "@types/es6-promise": "0.0.32",
+    "@types/hammerjs": "2.0.32",
+    "@types/jasmine": "2.2.33",
+    "@types/node": "6.0.38",
+    "@types/source-map": "0.5.0",
+    "@types/uglify-js": "2.6.28",
+    "@types/webpack": "1.12.34",
+    "angular2-hmr": "0.8.1",
+    "autoprefixer": "6.3.6",
+    "awesome-typescript-loader": "2.2.4",
+    "better-npm-run": "0.0.12",
+    "chai": "3.5.0",
+    "chai-as-promised": "5.3.0",
+    "codelyzer": "1.0.0-beta.2",
+    "compression-webpack-plugin": "0.3.0",
+    "copy-webpack-plugin": "1.1.1",
+    "css-loader": "0.23.1",
+    "cucumber": "1.3.0",
+    "cucumber-tsflow": "1.2.1",
+    "electron": "1.4.3",
+    "electron-chromedriver": "1.4.0",
+    "electron-prebuilt": "1.4.3",
+    "exports-loader": "0.6.3",
+    "expose-loader": "0.7.1",
+    "file-loader": "0.8.5",
+    "html-webpack-plugin": "2.9.0",
+    "http-server": "0.9.0",
+    "imports-loader": "0.6.5",
+    "is-my-json-valid": "2.16.0",
+    "istanbul-instrumenter-loader": "0.2.0",
+    "json-loader": "0.5.4",
+    "karma": "0.13.22",
+    "karma-chrome-launcher": "0.2.2",
+    "karma-coverage": "0.5.5",
+    "karma-jasmine": "0.3.8",
+    "karma-mocha-reporter": "2.0.0",
+    "karma-phantomjs-launcher": "1.0.0",
+    "karma-sourcemap-loader": "0.3.7",
+    "karma-webpack": "1.7.0",
+    "merge": "1.2.0",
+    "node-sass": "4.5.1",
+    "parse5": "1.3.2",
+    "phantomjs-polyfill": "0.0.2",
+    "phantomjs-prebuilt": "2.1.6",
+    "postcss-loader": "0.8.2",
+    "protractor": "4.0.14",
+    "protractor-cucumber-framework": "0.6.0",
+    "raw-loader": "0.5.1",
+    "remap-istanbul": "0.5.1",
+    "rimraf": "2.5.2",
+    "sass-loader": "3.1.2",
+    "source-map-loader": "0.1.5",
+    "style-loader": "0.13.0",
+    "to-string-loader": "1.1.3",
+    "ts-helper": "0.0.1",
+    "ts-node": "0.7.0",
+    "tslint": "3.6.0",
+    "tslint-loader": "2.1.3",
+    "typedoc": "0.3.12",
+    "typescript": "2.0.2",
+    "typings": "1.3.3",
+    "url-loader": "0.5.7",
+    "webpack": "1.12.14",
+    "webpack-dev-server": "1.14.1",
+    "webpack-md5-hash": "0.0.5",
+    "webpack-merge": "0.8.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yosoyvilla/protractor-cucumber-gherkin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yosoyvilla/protractor-cucumber-gherkin/issues"
+  },
+  "engines": {
+    "node": ">= 4.2.1",
+    "npm": ">= 3"
+  }
 }
